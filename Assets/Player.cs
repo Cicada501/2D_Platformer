@@ -120,80 +120,42 @@ public class Player : MonoBehaviour
 
         //---------------------ATTACKING--------------------------------
 
-        //Activate attackMode by pressing Q
-        if (Input.GetKeyDown(KeyCode.Q) && !attackMode)
+        print("Attack1: " + attack1 + "\tAttack2: " + attack2 + "\tAttack3: " + attack3);
+
+
+        if (!attack1 && !attack2 && !attack3)
         {
-            attackMode = true;
-            //Deactivate by pressing Q again
-        }
-        else if (Input.GetKeyDown(KeyCode.Q) && attackMode)
-        {
-            attackMode = false;
-        }
-        //Deactivate attackmode when running
-        if (horizontal != 0)
-        {
-            attackMode = false;
+            if (Input.GetMouseButtonDown(0) && !attack2 && !attack3)
+            {
+                attack1 = true;
+            }
         }
 
-        print(attack1Used);
-        if (Input.GetMouseButtonDown(0) && attackDuration1 <= 0 && !attack1Used && horizontal == 0 && isGrunded && attack3Used)
+        else if (!attack2 && attack1 && !attack3)
         {
-
-            attack1 = true;
-            attack1Used = false;
-            attackMode = true;
-            attackDuration1 = startAttack1Duration;
-
+            if (Input.GetMouseButtonDown(0) && attack1 && !attack3)
+            {
+                attack2 = true;
+            }
         }
-        else if (attackDuration1 <= 0 && attack1)
+        else if (attack1 && attack2 && !attack3)
         {
-            attack1 = false;
-            attack1Used = true;
-
+            if (Input.GetMouseButtonDown(0) && attack1 && attack2)
+            {
+                attack3 = true;
+            }
         }
         else
         {
-            attackDuration1 -= Time.deltaTime;
-        }
+            if (Input.GetMouseButtonDown(0) && attack1 && attack2 && attack3)
+            {
+                attack1 = false;
+                attack2 = false;
+                attack3 = false;
+            }
 
-        if (attack1Used && Input.GetMouseButtonDown(0) && attackDuration2 <= 0)
-        {
-            attack2 = true;
-            attack2Used = false;
-            attack1Used = false;
-            attackDuration2 = startAttack2Duration;
 
         }
-        else if (attackDuration2 <= 0 && attack2)
-        {
-            attack2 = false;
-            attack2Used = true;
-        }
-        else
-        {
-            attackDuration2 -= Time.deltaTime;
-        }
-
-        if (attack2Used && Input.GetMouseButtonDown(0) && attackDuration3 <= 0)
-        {
-            attack3 = true;
-            attack3Used = false;
-            attack2Used = false;
-            attack1Used = false;
-            attackDuration2 = startAttack2Duration;
-
-        }
-        else if (attackDuration3 <= 0 && attack3)
-        {
-            attack3 = false;
-            attack3Used = true;
-        }
-        else
-        {
-            attackDuration3 -= Time.deltaTime;
-        }
-
 
         /* 		//Do attack1 if 
                 if(Input.GetMouseButtonDown(0) && attackDuration<=0  && horizontal == 0 && isGrunded){ // 0 = LMB, 1 = RMB, 
