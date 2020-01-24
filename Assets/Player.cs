@@ -61,6 +61,8 @@ public class Player : MonoBehaviour
 
     int attackConter = 0;
 
+    public AudioSource meeleeSound1;
+
 
 
 
@@ -69,7 +71,9 @@ public class Player : MonoBehaviour
     void Start()
     {
 
-
+        attackDuration1 = startAttack1Duration;
+        attackDuration2 = startAttack2Duration;
+        attackDuration3 = startAttack3Duration;
 
 
         playerAnimator = GetComponent<Animator>();
@@ -84,8 +88,10 @@ public class Player : MonoBehaviour
 
         // Get input to variables
         horizontal = Input.GetAxis("Horizontal");
-        speed = Mathf.Abs(horizontal);
-
+        if (!attack1 && !attack2 && !attack3)
+        {
+            speed = Mathf.Abs(horizontal);
+        }
         //apply input to player (moveing left, right)
         rb.velocity = new Vector2(horizontal, rb.velocity.y);
 
@@ -122,72 +128,81 @@ public class Player : MonoBehaviour
 
         print("Attack1: " + attack1 + "\tAttack2: " + attack2 + "\tAttack3: " + attack3);
 
-
+        //No attacks used
         if (!attack1 && !attack2 && !attack3)
         {
+
             if (Input.GetMouseButtonDown(0) && !attack2 && !attack3)
             {
                 attack1 = true;
+                attackMode = true;
             }
-        }
 
+        }
+        //Attack 1 used
         else if (!attack2 && attack1 && !attack3)
         {
+            //if attack1 used, start counting time
+            attackDuration1 -= Time.deltaTime;
+
             if (Input.GetMouseButtonDown(0) && attack1 && !attack3)
             {
                 attack2 = true;
             }
+            else if (attackDuration1 <= 0)
+            {
+                attack1 = false;
+                attackMode = false;
+                attackDuration1 = startAttack1Duration;
+            }
         }
+
+        //Attack 2 used
         else if (attack1 && attack2 && !attack3)
         {
+            attackDuration2 -= Time.deltaTime;
             if (Input.GetMouseButtonDown(0) && attack1 && attack2)
             {
                 attack3 = true;
             }
+            else if (attackDuration2 <= 0)
+            {
+                attack1 = false;
+                attack2 = false;
+                attackMode = false;
+
+                attackDuration1 = startAttack1Duration;
+                attackDuration2 = startAttack1Duration;
+            }
         }
+
+        //All attacks used
         else
         {
+            attackDuration3 -= Time.deltaTime;
+
             if (Input.GetMouseButtonDown(0) && attack1 && attack2 && attack3)
             {
                 attack1 = false;
                 attack2 = false;
                 attack3 = false;
+                attackMode = false;
+
+            }
+            else if (attackDuration3 <= 0)
+            {
+                attack1 = false;
+                attack2 = false;
+                attack3 = false;
+                attackMode = false;
+
+                attackDuration1 = startAttack1Duration;
+                attackDuration2 = startAttack1Duration;
+                attackDuration3 = startAttack1Duration;
             }
 
 
         }
-
-        /* 		//Do attack1 if 
-                if(Input.GetMouseButtonDown(0) && attackDuration<=0  && horizontal == 0 && isGrunded){ // 0 = LMB, 1 = RMB, 
-
-                    attack1 = true;
-                    attackMode = true;
-                    attackDuration = startAttack1Duration;
-                    attackConter++;
-
-
-                }else if(attackDuration<=0){
-                    attack1 = false;
-                    attack2 = false;
-                    attack3 = false;
-                    attackConter = 0;
-
-                }else if(attack1 && attackDuration > 0 && Input.GetMouseButtonDown(0) && attackConter == 1){
-                    attack2 = true;
-                    attackDuration += startAttack2Duration;
-                    attackConter++;
-
-                }else if(attack1 && attack2 && attackDuration > 0 && Input.GetMouseButtonDown(0) && attackConter == 2){
-                    attack3 = true;
-                    attackDuration += startAttack3Duration;
-                    attackConter++;
-
-                }
-
-                else{
-                    attackDuration -= Time.deltaTime;
-                } */
-
 
 
         //--------------------END: ATTACKING -------------------------------
@@ -221,10 +236,10 @@ public class Player : MonoBehaviour
         //Longer Jump on Space holding
         if (Input.GetKey(KeyCode.Space) && isJumping)
         {
-            print("Here1");
+
             if (jumpTimeCounter > 0)
             {
-                print("Here2");
+
                 rb.velocity = Vector2.up * jumpForce;
                 jumpTimeCounter -= Time.deltaTime;
             }
