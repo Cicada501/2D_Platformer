@@ -53,8 +53,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\BackgroundLayereffect.cs" />
-     <Compile Include="Assets\backgrShake.cs" />
+     <Compile Include="Assets\Enemy.cs" />
      <Compile Include="Assets\EZ-Camera-Shake-Unity-master\Assets\EZ Camera Shake\Demo\Sample Scripts\ShakeByDistance.cs" />
      <Compile Include="Assets\EZ-Camera-Shake-Unity-master\Assets\EZ Camera Shake\Demo\Sample Scripts\ShakeOnKeyPress.cs" />
      <Compile Include="Assets\EZ-Camera-Shake-Unity-master\Assets\EZ Camera Shake\Demo\Sample Scripts\ShakeOnTrigger.cs" />
@@ -64,10 +63,13 @@
      <Compile Include="Assets\EZ-Camera-Shake-Unity-master\Assets\EZ Camera Shake\Scripts\CameraShaker.cs" />
      <Compile Include="Assets\EZ-Camera-Shake-Unity-master\Assets\EZ Camera Shake\Scripts\Utilities\CameraUtilities.cs" />
      <Compile Include="Assets\Gizmos\CameraShake.cs" />
-     <Compile Include="Assets\Player.cs" />
+     <Compile Include="Assets\Scripts\BackgroundLayereffect.cs" />
+     <Compile Include="Assets\Scripts\backgrShake.cs" />
+     <Compile Include="Assets\Scripts\Player.cs" />
+     <Compile Include="Assets\Scripts\PlayerAttack.cs" />
      <None Include="Assets\EZ-Camera-Shake-Unity-master\ProjectSettings\ProjectVersion.txt" />
-     <None Include="Assets\Magic-Cliffs-Environment\public-license.txt" />
-     <None Include="Assets\melee sounds\melee.txt" />
+     <None Include="Assets\Sprites\Magic-Cliffs-Environment\public-license.txt" />
+     <None Include="Assets\Audio\melee sounds\melee.txt" />
  <Reference Include="Cinemachine">
  <HintPath>F:/Users/Louis/Desktop/2D_Platformer/Library/ScriptAssemblies/Cinemachine.dll</HintPath>
  </Reference>
