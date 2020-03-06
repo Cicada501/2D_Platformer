@@ -53,7 +53,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Enemy.cs" />
      <Compile Include="Assets\EZ-Camera-Shake-Unity-master\Assets\EZ Camera Shake\Demo\Sample Scripts\ShakeByDistance.cs" />
      <Compile Include="Assets\EZ-Camera-Shake-Unity-master\Assets\EZ Camera Shake\Demo\Sample Scripts\ShakeOnKeyPress.cs" />
      <Compile Include="Assets\EZ-Camera-Shake-Unity-master\Assets\EZ Camera Shake\Demo\Sample Scripts\ShakeOnTrigger.cs" />
@@ -65,6 +64,8 @@
      <Compile Include="Assets\Gizmos\CameraShake.cs" />
      <Compile Include="Assets\Scripts\BackgroundLayereffect.cs" />
      <Compile Include="Assets\Scripts\backgrShake.cs" />
+     <Compile Include="Assets\Scripts\Dwarf_walk.cs" />
+     <Compile Include="Assets\Scripts\Enemy.cs" />
      <Compile Include="Assets\Scripts\Player.cs" />
      <Compile Include="Assets\Scripts\PlayerAttack.cs" />
      <None Include="Assets\EZ-Camera-Shake-Unity-master\ProjectSettings\ProjectVersion.txt" />
