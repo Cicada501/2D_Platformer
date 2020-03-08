@@ -66,8 +66,9 @@
      <Compile Include="Assets\Scripts\backgrShake.cs" />
      <Compile Include="Assets\Scripts\Dwarf_walk.cs" />
      <Compile Include="Assets\Scripts\Enemy.cs" />
-     <Compile Include="Assets\Scripts\Player.cs" />
-     <Compile Include="Assets\Scripts\PlayerAttack.cs" />
+     <Compile Include="Assets\Scripts\Player\Player.cs" />
+     <Compile Include="Assets\Scripts\Player\PlayerAttack.cs" />
+     <Compile Include="Assets\Scripts\Player\PlayerHealth.cs" />
      <None Include="Assets\EZ-Camera-Shake-Unity-master\ProjectSettings\ProjectVersion.txt" />
      <None Include="Assets\Sprites\Magic-Cliffs-Environment\public-license.txt" />
      <None Include="Assets\Audio\melee sounds\melee.txt" />
