@@ -12,6 +12,8 @@ public class Enemy : MonoBehaviour
 
     Rigidbody2D rb;
     Transform player;
+
+    [SerializeField]
     bool facingRight = true;
     Animator animator;
     public int maxHealth = 100;
@@ -63,7 +65,7 @@ public class Enemy : MonoBehaviour
 
     void Die()
     {
-        transform.position = transform.position - new Vector3(0, 0.06f, 0);
+        //transform.position = transform.position - new Vector3(0, 0.06f, 0);
         animator.SetBool("isDead", true);
 
         //dont move when dead

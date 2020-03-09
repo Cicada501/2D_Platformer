@@ -8,6 +8,12 @@ AnimatorController:
   m_Name: Dwarf_Controller
   serializedVersion: 5
   m_AnimatorParameters:
+  - m_Name: Attack
+    m_Type: 9
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
   - m_Name: Hurt
     m_Type: 9
     m_DefaultFloat: 0
@@ -16,12 +22,6 @@ AnimatorController:
     m_Controller: {fileID: 0}
   - m_Name: isDead
     m_Type: 4
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 0}
-  - m_Name: Attack
-    m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
@@ -56,6 +56,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4064355ae9be9c94192d9bc468fa5213, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  basicSpeed: 1
   attackRange: 0.3
 --- !u!1101 &1101024610618465244
 AnimatorStateTransition:
@@ -515,31 +516,6 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
---- !u!1102 &1102574446894203358
-AnimatorState:
-  serializedVersion: 5
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: dwarf_attack2
-  m_Speed: 1
-  m_CycleOffset: 0
-  m_Transitions: []
-  m_StateMachineBehaviours: []
-  m_Position: {x: 50, y: 50, z: 0}
-  m_IKOnFeet: 0
-  m_WriteDefaultValues: 1
-  m_Mirror: 0
-  m_SpeedParameterActive: 0
-  m_MirrorParameterActive: 0
-  m_CycleOffsetParameterActive: 0
-  m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 7dbea95eb69472440bc27c20c3a1ad09, type: 2}
-  m_Tag: 
-  m_SpeedParameter: 
-  m_MirrorParameter: 
-  m_CycleOffsetParameter: 
-  m_TimeParameter: 
 --- !u!1102 &1102595805968270202
 AnimatorState:
   serializedVersion: 5
@@ -612,9 +588,6 @@ AnimatorStateMachine:
   - serializedVersion: 1
     m_State: {fileID: 1102913103990629374}
     m_Position: {x: 12, y: 84, z: 0}
-  - serializedVersion: 1
-    m_State: {fileID: 1102574446894203358}
-    m_Position: {x: 732, y: 156, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102077365438381360}
     m_Position: {x: 12, y: 180, z: 0}

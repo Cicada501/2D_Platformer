@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Dwarf_walk : StateMachineBehaviour {
 
-	public static float speed = 1f;
+	public float basicSpeed = 1f;
+	float speed;
 	public float attackRange = 1f;
 	Rigidbody2D rb;
 	Transform player;
@@ -13,7 +14,7 @@ public class Dwarf_walk : StateMachineBehaviour {
 	override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
 		rb = animator.GetComponent<Rigidbody2D>();
 		player = GameObject.FindGameObjectWithTag("Player").transform;
-		speed = 1f;
+		speed = basicSpeed;
 	}
 
 	// OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
