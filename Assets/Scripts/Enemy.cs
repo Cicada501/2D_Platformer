@@ -58,6 +58,14 @@ public class Enemy : MonoBehaviour
         distToPlayer = Mathf.Abs(rb.position.x- player.position.x);
         animator.SetFloat("distToPlayer", distToPlayer);
 
+       /*  if(isGrounded){
+            rb.bodyType = RigidbodyType2D.Kinematic;
+            print("Kinematic");
+        }else  */if(!isGrounded){
+            rb.bodyType = RigidbodyType2D.Dynamic;
+            print("Dynamic");
+        }
+
 
     }//----------------------END: Update -----------------------------------
 
@@ -85,7 +93,8 @@ public class Enemy : MonoBehaviour
         rb.velocity = new Vector2(0f, 0f);
         rb.angularVelocity = 0f;
 
-        rb.mass = 0f;
+        rb.mass = 0;
+        rb.gravityScale = 0;
 
         //Disable all coliders when dead
         foreach (Collider2D c in GetComponents<Collider2D>())
@@ -101,6 +110,8 @@ public class Enemy : MonoBehaviour
     {
         if(other.gameObject.tag =="Ground"){
             isGrounded = true;
+        }else{
+            isGrounded = false;
         }
     }
 

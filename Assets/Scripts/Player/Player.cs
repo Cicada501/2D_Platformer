@@ -96,6 +96,7 @@ public class Player : MonoBehaviour
         playerAnimator.SetBool("isGrounded", (isOnPlatform1 || isGrunded));
         playerAnimator.SetBool("isFalling", isFalling);
 
+    
 
     }
 
@@ -157,7 +158,8 @@ public class Player : MonoBehaviour
 
     }
 
-    public void GiveSuperJumps(){
+    public void GiveSuperJumps()
+    {
         jumpForce = 2.3f;
     }
 }
