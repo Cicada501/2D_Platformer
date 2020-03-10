@@ -2,9 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Enemy : MonoBehaviour
 {
-	float distToPlayer;
+
+    public float attackRate = 1.5f;
+    public static float nextAttackTime;
+    float distToPlayer;
 
     public Transform attackPoint;
     public float attackRadius;
@@ -20,6 +24,7 @@ public class Enemy : MonoBehaviour
     int currentHealth;
 
 
+
     bool isDead;
 
     void Start()
@@ -27,11 +32,17 @@ public class Enemy : MonoBehaviour
         currentHealth = maxHealth;
         player = GameObject.FindGameObjectWithTag("Player").transform;
         rb = GetComponent<Rigidbody2D>();
-		animator = GetComponent<Animator>();
+        animator = GetComponent<Animator>();
     }
 
     private void Update()//-------------------------------------------------
     {
+        //Recognize when Enemy has attacked, and set nextAttackTime
+        if(animator.GetBool("Attack")==true){
+            
+            nextAttackTime = Time.time + 1f / attackRate;
+        }
+
         //Look at Player
         if (transform.position.x > player.position.x && facingRight)
         {
@@ -42,8 +53,8 @@ public class Enemy : MonoBehaviour
             enemyFlip();
         }
 
-        distToPlayer = Vector2.Distance(rb.position, player.position);
-		animator.SetFloat("distToPlayer",distToPlayer);
+        distToPlayer = Mathf.Abs(rb.position.x- player.position.x);
+        animator.SetFloat("distToPlayer", distToPlayer);
 
 
     }//----------------------END: Update -----------------------------------
@@ -72,8 +83,12 @@ public class Enemy : MonoBehaviour
         rb.velocity = new Vector2(0f, 0f);
         rb.angularVelocity = 0f;
 
-        //Disable Collider and script
-        GetComponent<Collider2D>().enabled = false;
+        //Disable all coliders when dead
+        foreach (Collider2D c in GetComponents<Collider2D>())
+        {
+            c.enabled = false;
+        }
+        //Disable Script after colliders (otherwise coliders dont get disabled)
         this.enabled = false;
     }
 

@@ -158,6 +158,6 @@ public class Player : MonoBehaviour
     }
 
     public void GiveSuperJumps(){
-        jumpForce = 4;
+        jumpForce = 2.3f;
     }
 }

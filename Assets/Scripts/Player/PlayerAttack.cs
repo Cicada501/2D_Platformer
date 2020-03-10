@@ -8,13 +8,14 @@ public class PlayerAttack : MonoBehaviour
     public float startFreezingTime = 0.1f;
     public float endFreezingTime = 0.2f;
     bool enemyInDamagezone = false;
+    float timeForAnimPause = 0f;
+    float timeForAnimResume = 0f;
 
     public float attackRate = 1.5f;
     float nextAttackTime = 0f;
     public static bool isAttacking = false;
 
-    float timeForAnimPause = 0f;
-    float timeForAnimResume = 0f;
+
 
 
     public AudioSource meeleeSound1;
