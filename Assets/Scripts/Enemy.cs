@@ -23,6 +23,8 @@ public class Enemy : MonoBehaviour
     public int maxHealth = 100;
     int currentHealth;
 
+    bool isGrounded;
+
 
 
     bool isDead;
@@ -83,13 +85,23 @@ public class Enemy : MonoBehaviour
         rb.velocity = new Vector2(0f, 0f);
         rb.angularVelocity = 0f;
 
+        rb.mass = 0f;
+
         //Disable all coliders when dead
         foreach (Collider2D c in GetComponents<Collider2D>())
         {
             c.enabled = false;
         }
+        
         //Disable Script after colliders (otherwise coliders dont get disabled)
         this.enabled = false;
+    }
+
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if(other.gameObject.tag =="Ground"){
+            isGrounded = true;
+        }
     }
 
     void enemyFlip()

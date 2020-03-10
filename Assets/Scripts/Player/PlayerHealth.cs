@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class PlayerHealth : MonoBehaviour
     Color origionalColor;
     public SpriteRenderer renderer;
 	Transform player;
+    Rigidbody2D rb;
 
     // Use this for initialization
     void Start()
@@ -23,6 +25,8 @@ public class PlayerHealth : MonoBehaviour
         currentHealth = maxHealth;
 		
         origionalColor = renderer.color;
+
+        rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -30,6 +34,13 @@ public class PlayerHealth : MonoBehaviour
     {
 		healthBarSlider.maxValue = maxHealth;
 		healthBarSlider.value = currentHealth;
+
+        if(currentHealth<=0){
+            Die();
+        }
+        if(rb.velocity.y < -28){
+            Die();
+        }
     }
 
     public void TakeDamage(int damage)
@@ -54,7 +65,14 @@ public class PlayerHealth : MonoBehaviour
     }
     void ResetColor()
     {
+       
         renderer.color = origionalColor;
+    }
+
+    void Die(){
+
+        SceneManager.LoadScene("SampleScene");
+
     }
 
 

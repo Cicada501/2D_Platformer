@@ -17,8 +17,10 @@ public class PlayerAttack : MonoBehaviour
 
 
 
-
+    int soundChoice;
     public AudioSource meeleeSound1;
+    public AudioSource meeleeSound2;
+    public AudioSource meeleeSound3;
     public AudioSource hitmarkerSound;
 
 
@@ -83,7 +85,10 @@ public class PlayerAttack : MonoBehaviour
     void Attack()
     {
         playerAnimator.SetTrigger("Attack");
-        meeleeSound1.Play();
+        soundChoice = Random.Range(0, 2);
+        if (soundChoice == 0) { meeleeSound1.Play(); }
+        else if (soundChoice == 1) { meeleeSound2.Play(); }
+        else if (soundChoice == 2) { meeleeSound3.Play(); }
 
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRadius, enemyLayers);
         if (hitEnemies.Length > 0)
